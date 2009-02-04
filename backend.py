@@ -30,6 +30,12 @@ class Index(webapp.RequestHandler):
             'index.html')
         # render the template with the provided context
         self.response.out.write(template.render(path, context))
+
+class Deleter(webapp.RequestHandler):
+    def post(self):
+       image = db.get(self.request.get("key"))
+       image.delete()
+       self.redirect('/')
        
 class Uploader(webapp.RequestHandler):
     def post(self):
@@ -55,7 +61,8 @@ class Uploader(webapp.RequestHandler):
                 
 application = webapp.WSGIApplication([
     ('/', Index),
-    ('/upload', Uploader)
+    ('/upload', Uploader),
+    ('/delete', Deleter)
 ], debug=True)
 
 def main():

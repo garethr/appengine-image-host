@@ -50,6 +50,9 @@ h1 span {
     float: left;
     padding: 5px;
 }
+#images li form {
+  padding-top: 5px;  
+}
 #images img {
     border: 2px solid #AAA;
 }

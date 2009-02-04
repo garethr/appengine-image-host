@@ -37,6 +37,10 @@
             {% for image in images %}
                 <li>
                     <a href="/i/img?id={{image.key}}" class="lightbox"><img src="/i/thumb?id={{image.key}}"/></a>
+                    <form action="/delete" method="post">
+                        <input type="hidden" value="{{image.key}}" name="key"/>
+                        <input type="submit" value="Delete" name="delete"/>
+                    </form>
                 </li>
             {% endfor %}
             </ul> <!-- end images -->

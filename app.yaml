@@ -1,0 +1,16 @@
+application: imagehost
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /assets
+  static_dir: assets
+  
+- url: /i/(img|thumb).*
+  script: frontend.py
+
+- url: /.*
+  script: backend.py
+  login: required
+  

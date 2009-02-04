@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>App Engine Image Host</title>
+    <link rel="stylesheet" href="/assets/css/reset.css" type="text/css" media="all" charset="utf-8"/>
+    <link rel="stylesheet" href="/assets/css/common.css" type="text/css" media="all" charset="utf-8"/>
+    <link rel="stylesheet" href="/assets/css/lightbox.css" type="text/css" media="screen" charset="utf-8"/>
+
+    <script src="/assets/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/js/jquery.lightbox.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/js/common.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+    <div id="main">
+        <div id="head">
+            <h1>App Engine <span>Image Host</span></h1>
+            <a href="{{logout}}">logout</a>
+        </div> <!-- end head -->
+
+        <div id="content">
+            <form action="/upload" enctype="multipart/form-data" method="post">
+                <label for="img">Image</label>
+                <input type="file" name="img" id="img"/>
+                <label for="width">Width</label>
+                <input type="text" name="width" id="width" class="txt"/>
+                <label for="height">Height</label>
+                <input type="text" name="height" id="height" class="txt"/>
+                <input type="submit" value="Upload"/>
+            </form>
+            
+            <p>Not specifying a width or height will result in the original image being stored unaltered in dimension. All images are converted to pngs. Maximum 1MB.</p>
+
+            {% if images %}
+            <ul id="images">
+            {% for image in images %}
+                <li>
+                    <a href="/i/img?id={{image.key}}" class="lightbox"><img src="/i/thumb?id={{image.key}}"/></a>
+                </li>
+            {% endfor %}
+            </ul> <!-- end images -->
+            {% endif %}
+            
+            <p>This application was originally build by Gareth Rushgroge to host and quickly resize images for his blog <a href="http://morethanseven.net">morethanseven.net</a>. The code can be found on <a href="http://github.com/garethr/appengine-image-host">GitHub</a>.</p>
+        
+        </div> <!-- end content -->
+    </body>
+</html>

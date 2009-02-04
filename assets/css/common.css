@@ -1,0 +1,62 @@
+#head {
+    padding: 10px;
+    background: #CCC;
+    border-bottom: 2px solid #AAA;
+}
+h1 {
+    font-size: 100%;
+    line-height: 1
+}
+h1 span {
+    display: block;
+    font-size: 240%;
+    font-weight: bold;   
+}
+#head a {
+    position: absolute;
+    right: 10px;
+    top: 35px;   
+}
+#content {
+    margin: 20px;
+}
+#content p {
+    color: #666;
+    margin-top: 15px;
+    width: 500px;
+    clear: both;
+}
+#content form {
+    position: relative;
+    padding-top: 20px;
+}
+#content form input {
+    margin-right: 10px;
+}
+#content form input.txt {
+    width: 4em;
+}
+#content form label {
+    position: absolute;
+    font-weight: bold;
+    top: 0;
+}
+#images {
+    margin: 25px 0;
+    padding: 5px;
+    float: left;
+}
+#images li {
+    float: left;
+    padding: 5px;
+}
+#images img {
+    border: 2px solid #AAA;
+}
+a {
+    color: #666;
+    text-decoration: none;
+}
+a:hover, a:focus {
+    color: #333;
+}

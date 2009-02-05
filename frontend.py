@@ -20,8 +20,16 @@ class GenericServer(webapp.RequestHandler):
     property = 'image'
     def get(self):
         # key is provided in the query string
-        image = db.get(self.request.get("id"))
-        if image.image:
+        img = self.request.get("id")
+        try:
+            # it might be an invalid key so we better check
+            image = db.get(img)
+        except db.BadKeyError:
+            # if it is then return a 404
+            self.error(404)
+            return
+            
+        if image and image.image:
             # we have an image so prepare the response
             # with the relevant headers
             self.response.headers['Content-Type'] = "image/png"

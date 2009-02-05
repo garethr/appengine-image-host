@@ -50,10 +50,12 @@ class Deleter(webapp.RequestHandler):
         "Delete a given image"
         # we get the user as you can only delete your own images
         user = users.get_current_user()
-        image = db.get(self.request.get("key"))
-        # check that we own this image
-        if image.user == user:
-            image.delete()
+        key = self.request.get("key")
+        if key:
+            image = db.get()
+            # check that we own this image
+            if image.user == user:
+                image.delete()
         # whatever happens rediect back to the main admin view
         self.redirect('/')
        
@@ -62,6 +64,14 @@ class Uploader(webapp.RequestHandler):
     def post(self):
         "Upload via a multitype POST message"
         
+        img = self.request.get("img")
+
+        # if we don't have image data we'll quit now
+        if not img:
+            self.redirect('/')
+            return 
+            
+        # we have image data
         try:
             # check we have numerical width and height values
             width = int(self.request.get("width"))
@@ -69,16 +79,16 @@ class Uploader(webapp.RequestHandler):
         except ValueError:
             # if we don't have valid width and height values
             # then just use the original image
-            image_content = self.request.get("img")
+            image_content = img
         else:
             # if we have valid width and height values
             # then resize according to those values
-            image_content = images.resize(self.request.get("img"), width, height)
+            image_content = images.resize(img, width, height)
         
         # get the image data from the form
-        original_content = self.request.get("img")
+        original_content = img
         # always generate a thumbnail for use on the admin page
-        thumb_content = images.resize(self.request.get("img"), 100, 100)
+        thumb_content = images.resize(img, 100, 100)
         
         # create the image object
         image = Image()

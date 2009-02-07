@@ -8,7 +8,7 @@ I like to add the odd image to a blog post now and then, but hate having to uplo
 
 h2. Usage
 
-For the most part it's just a matter of deploying to AppEngine which I won;t cover here. Read the official documentation for details.
+For the most part it's just a matter of deploying to AppEngine which I won't cover here. Read the official documentation for details.
 
 By default images are viewable by everyone but the upload panel is only available to the administration for your account. If you want to make that available to any registered user then change the following line in the app.yaml configuration file.
 

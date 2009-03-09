@@ -52,7 +52,7 @@ class Deleter(webapp.RequestHandler):
         user = users.get_current_user()
         key = self.request.get("key")
         if key:
-            image = db.get()
+            image = db.get(key)
             # check that we own this image
             if image.user == user:
                 image.delete()
